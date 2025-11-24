@@ -1,0 +1,35 @@
+
+
+.card-grid { 
+    display: grid; gap: 1rem;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); 
+}
+
+.tag { 
+    display:inline-block;
+    background:#eef;
+    padding:0.15rem .4rem; 
+    border-radius:.25rem; 
+    margin-right:.25rem; 
+    font-size:.8rem; 
+}
+.sr-only { 
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
+    padding:0; 
+    margin:-1px; 
+    overflow:hidden; 
+    clip:rect(0,0,0,0); 
+    border:0;
+}
+
+.mb-3 {
+    width: 400px;
+    text-align: center;
+    justify-content: center;
+     
+}
+.navbar-brand {
+   height: auto;
+}
