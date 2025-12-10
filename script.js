@@ -11,10 +11,7 @@ async function getAllRecords() {
     },
   };
 
-  await fetch(
-    `https://api.airtable.com/v0/appuAb4p2UuhniNpC/Places`,
-    options
-  )
+  await fetch(`https://api.airtable.com/v0/appuAb4p2UuhniNpC/Places`, options)
     .then((response) => response.json())
     .then((data) => {
       console.log(data); // response is an object w/ .records array
@@ -33,12 +30,12 @@ async function getAllRecords() {
         newHtml += `
         
           <div class="card h-100">
-            <a href="index.html?id=${data.records[i].id}"><img src="rainbow.PNG`" class="card-img-top" alt="Card image" /></a>
+            <a href="index.html?id=${data.records[i].id}"><img src="rainbow.PNG" class="card-img-top" alt="Card image" /></a>
             <div class="card-body">
-              <h2 class="card-title">${name}</h2>;
-              <p class="card-text"><strong>Location Type:</strong> ${type}</p>;
-              <p class="card-text"><strong>Indoor/Outdoor:</strong> ${inOut}</p>;
-              <p class="card-text"><strong>Best For Ages:</strong> ${ages}</p>;
+              <h2 class="card-title">${name}</h2>
+              <p class="card-text"><strong>Location Type:</strong> ${type}</p>
+              <p class="card-text"><strong>Indoor/Outdoor:</strong> ${inOut}</p>
+              <p class="card-text"><strong>Best For Ages:</strong> ${ages}</p>
             </div>
           </div>
     
@@ -49,7 +46,6 @@ async function getAllRecords() {
       getResultElement.innerHTML = newHtml;
     });
 }
-
 
 // function for our detail view
 async function getOneRecord(id) {
@@ -81,14 +77,14 @@ async function getOneRecord(id) {
       let sensory = data.fields["Sesnory"];
       let cost = data.fields["Cost"];
       let url = data.fields["URL"];
-    
+      let photo = data.fields["Photo"];
 
       let newHtml = `
      
      <div class="card mb-3" style="max-width: 540px;">
   <div class="row g-0">
     <div class="col-md-4">
-      <img src="..." class="img-fluid rounded-start" alt="...">
+      <img src="${photo}" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-8">
       <div class="card-body">
@@ -101,7 +97,7 @@ async function getOneRecord(id) {
               <p class="card-text"><strong>Contact:</strong>${contact}</p>
                 <p class="card-text"><strong>Sensory Level:</strong>${sensory}</p>
                  <p class="card-text"><strong>Cost:</strong>${cost}</p>
-                   <p class="card-text"><strong>Best For Ages:</strong>${ages}</p>
+                  <p class="card-text"><strong>Best For Ages:</strong>${ages}</p>
       </div>
     </div>
   </div>
@@ -113,8 +109,6 @@ async function getOneRecord(id) {
     });
 }
 
-
-
 // look up window.location.search and split, so this would take
 // https://dmspr2021-airtable-app.glitch.me/index.html?id=receHhOzntTGZ44I5
 // and look at the ?id=receHhOzntTGZ44I5 part, then split that into an array
@@ -124,6 +118,6 @@ if (idParams.length >= 2) {
   // has at least ["?id=", "OUR ID"]
 
   getOneRecord(idParams[1]); // create detail view HTML w/ our id
-} else { 
+} else {
   getAllRecords(); // no id given, fetch summaries
 }
