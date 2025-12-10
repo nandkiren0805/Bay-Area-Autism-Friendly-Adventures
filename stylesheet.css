@@ -26,8 +26,8 @@ body {
   align-items: center;
 }
 .landing header .img-container {
-  aspect-ratio: 1 / 1;
-  width: 25%;
+  aspect-ratio: 1920 / 1080;
+  width: 60%;
 }
 .landing img {
   width: 100%;
