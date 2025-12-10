@@ -4,7 +4,9 @@
   --sky-color: #ade5ff;
 }
 body {
-  font: 16px Arial sans-serif;
+  font:
+    16px Arial,
+    sans-serif;
   background-color: var(--body-bg-color);
   color: var(--body-color);
 }
@@ -35,16 +37,14 @@ body {
 }
 .landing article .img-container {
   aspect-ratio: 16 / 10;
-h1 {
-    font-family: 'Arizonia', cursive;
-    font-size: 3.5rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    color: #090b0e;
 }
-.card-grid { 
-    display: grid; gap: 1rem;
-    grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); 
+
+article.detail {
+  padding: 5%;
+}
+
+.detail figcaption {
+  padding: 5% 0;
 }
 
 .tag {

@@ -21,7 +21,7 @@ async function getAllRecords() {
       const articleHTML = `
         <article class="col-sm-12 col-md-6 col-lg-4 col-xxl-3 overview">
           <div class="card h-100">
-            <a href="index.html?id=ID}">
+            <a href="index.html?id=ID">
               <div class="img-container">
                 <img src="SRC" class="card-img-top" alt="Card image">
               </div>
@@ -87,44 +87,64 @@ async function getOneRecord(id) {
     .then((data) => {
       console.log(data); // response is a single object
 
-      let type = data.fields["Type"]; // here we are getting column values
-      let name = data.fields["Name"]; //here we are using the Field ID to fecth the name property
-      let ages = data.fields["Ages"];
-      let inOut = data.fields["Indoor/Outdoor"];
-      let address = data.fields["Address"];
-      let description = data.fields["Description"];
-      let hours = data.fields["Hours"];
-      let contact = data.fields["Contact"];
-      let sensory = data.fields["Sesnory"];
-      let cost = data.fields["Cost"];
-      let url = data.fields["URL"];
-      let photo = data.fields["Photo"];
-
-      let newHtml = `
-     
-     <div class="card mb-3" style="max-width: 540px;">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img src="${photo}" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">${name}</h5>
-          <p class="card-text"><strong>Address:</strong>${address}</p>
-        <p class="card-text">${description}</p>
-        <p class="card-text"><strong>Location Type:</strong>${type}</p>
-          <p class="card-text"><strong>Indoor/Outdoor:</strong>${inOut}</p>
-            <p class="card-text"><strong>Hours:</strong>${hours}</p>
-              <p class="card-text"><strong>Contact:</strong>${contact}</p>
-                <p class="card-text"><strong>Sensory Level:</strong>${sensory}</p>
-                 <p class="card-text"><strong>Cost:</strong>${cost}</p>
-                  <p class="card-text"><strong>Best For Ages:</strong>${ages}</p>
-      </div>
-    </div>
-  </div>
-</div>
-
+      const fields = data.fields;
+      let type = fields["Type"]; // here we are getting column values
+      let name = fields["Name"]; //here we are using the Field ID to fecth the name property
+      let ages = fields["Ages"];
+      let inOut = fields["Indoor/Outdoor"];
+      let address = fields["Address"];
+      let description = fields["Description"];
+      let hours = fields["Hours"];
+      let contact = fields["Contact"];
+      let sensory = fields["Sensory"];
+      let cost = fields["Cost"];
+      let url = fields["URL"];
+      let photo = "assets/placeholder.png";
+      if (fields["Photo"]) {
+        photo = fields["Photo"][0].url;
+      }
+      const articleHTML = `
+        <article class="card detail">
+          <div class="row gx-5">
+            <div class="col-sm-12 col-md-4">
+              <figure>
+                <div class="img-container">
+                  <img src="SRC" class="card-img-top" alt="Card image">
+                </div>
+                <figcaption>DESCRIPTION</figcaption>
+              </figure>
+            </div>
+            <div class="col-sm-12 col-md-8">
+              <h2>NAME</h2>
+              <ul>
+                <li>Address: ADDRESS</li>
+                <li>Location Type: TYPE</li>
+                <li>Hours: HOURS</li>
+                <li>Contact: CONTACT</li>
+                <li>Sensory Level: SENSORY</li>
+                <li>Cost: COST</li>
+                <li>Best for Ages: AGES</li>
+                <li>Indoor/Outdoor: IN-OUT</li>
+              </ul>
+            </div>
+          </div>
+        </article>
       `;
+
+      const article = articleHTML
+        .replace("DESCRIPTION", description)
+        .replace("SRC", photo)
+        .replace("NAME", name)
+        .replace("ADDRESS", address)
+        .replace("TYPE", type)
+        .replace("HOURS", hours)
+        .replace("CONTACT", contact)
+        .replace("SENSORY", sensory)
+        .replace("COST", cost)
+        .replace("AGES", ages)
+        .replace("IN-OUT", inOut);
+
+      let newHtml = article;
 
       jobsResultElement.innerHTML = newHtml;
     });
