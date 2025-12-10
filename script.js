@@ -35,10 +35,10 @@ async function getAllRecords() {
           <div class="card h-100">
             <a href="index.html?id=${data.records[i].id}"><img src="rainbow.PNG`" class="card-img-top" alt="Card image" /></a>
             <div class="card-body">
-              <h2 class="card-title">${name}</h2>
-              <p class="card-text"><strong>Location Type:</strong> ${type}</p>
-              <p class="card-text"><strong>Indoor/Outdoor:</strong> ${inOut}</p>
-              <p class="card-text"><strong>Best For Ages:</strong> ${ages}</p>
+              <h2 class="card-title">${name}</h2>;
+              <p class="card-text"><strong>Location Type:</strong> ${type}</p>;
+              <p class="card-text"><strong>Indoor/Outdoor:</strong> ${inOut}</p>;
+              <p class="card-text"><strong>Best For Ages:</strong> ${ages}</p>;
             </div>
           </div>
     
