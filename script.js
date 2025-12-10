@@ -18,29 +18,50 @@ async function getAllRecords() {
 
       getResultElement.innerHTML = ""; // clear brews
 
-      let newHtml = "";
-
-      for (let i = 0; i < data.records.length; i++) {
-        let photo = data.records[i].fields["Photo"];
-        let type = data.records[i].fields["Type"]; // here we are getting column values
-        let name = data.records[i].fields["Name"]; //here we are using the Field ID to fecth the name property
-        let ages = data.records[i].fields["Ages"];
-        let inOut = data.records[i].fields["Indoor/Outdoor"];
-
-        newHtml += `
-        
+      const articleHTML = `
+        <article class="col-sm-12 col-md-6 col-lg-4 col-xxl-3 overview">
           <div class="card h-100">
-            <a href="index.html?id=${data.records[i].id}"><img src="rainbow.PNG" class="card-img-top" alt="Card image" /></a>
+            <a href="index.html?id=ID}">
+              <div class="img-container">
+                <img src="SRC" class="card-img-top" alt="Card image">
+              </div>
+            </a>
             <div class="card-body">
-              <h2 class="card-title">${name}</h2>
-              <p class="card-text"><strong>Location Type:</strong> ${type}</p>
-              <p class="card-text"><strong>Indoor/Outdoor:</strong> ${inOut}</p>
-              <p class="card-text"><strong>Best For Ages:</strong> ${ages}</p>
+              <h2>NAME</h2>
+              <ul>
+                <li>Location Type: TYPE</li>
+                <li>Best for Ages: AGES</li>
+                <li>Indoor/Outdoor: IN-OUT</li>
+              </ul>
             </div>
           </div>
-    
-        
-        `;
+        </article>
+      `;
+
+      let newHtml = "";
+      for (let i = 0; i < data.records.length; i++) {
+        const fields = data.records[i].fields;
+        const id = data.records[i].id;
+        // This is the shorthand syntax for an if/else statement
+        // const photo = fields["Photo"] ? fields["Photo"][0].url : "";
+        let photo = "assets/placeholder.png";
+        if (fields["Photo"]) {
+          photo = fields["Photo"][0].url;
+        }
+        const type = fields["Type"];
+        const name = fields["Name"];
+        const ages = fields["Ages"];
+        const inOut = fields["Indoor/Outdoor"];
+
+        const article = articleHTML
+          .replace("ID", id)
+          .replace("SRC", photo)
+          .replace("NAME", name)
+          .replace("TYPE", type)
+          .replace("AGES", ages)
+          .replace("IN-OUT", inOut);
+
+        newHtml += article;
       }
 
       getResultElement.innerHTML = newHtml;
@@ -60,7 +81,7 @@ async function getOneRecord(id) {
 
   await fetch(
     `https://api.airtable.com/v0/appuAb4p2UuhniNpC/Places/${id}`,
-    options
+    options,
   )
     .then((response) => response.json())
     .then((data) => {
