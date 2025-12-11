@@ -117,6 +117,7 @@ async function getOneRecord(id) {
             <div class="col-sm-12 col-md-8">
               <h2>NAME</h2>
               <ul>
+                <li>Website: URL</li>
                 <li>Address: ADDRESS</li>
                 <li>Location Type: TYPE</li>
                 <li>Hours: HOURS</li>
@@ -143,6 +144,8 @@ async function getOneRecord(id) {
         .replace("COST", cost)
         .replace("AGES", ages)
         .replace("IN-OUT", inOut);
+    
+  
 
       let newHtml = article;
 

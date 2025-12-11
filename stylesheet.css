@@ -1,7 +1,7 @@
 :root {
   --body-bg-color: white;
   --body-color: black;
-  --sky-color: #ade5ff;
+  --sky-color: #ccf6fb;
 }
 body {
   font:
@@ -75,5 +75,16 @@ article.detail {
   height: auto;
 }
 
+.img-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 90px;
+  height: 60px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  border-radius: 50%;
+}
 
 
