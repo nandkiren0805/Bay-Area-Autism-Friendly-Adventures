@@ -45,6 +45,7 @@ article.detail {
 
 .detail figcaption {
   padding: 5% 0;
+  
 }
 
 .tag {
@@ -87,4 +88,12 @@ article.detail {
   border-radius: 50%;
 }
 
+.footer {
+  text-align: center;
+  padding: 60px 0;
+}
 
+.container-fluid tables {
+margin: 0 auto;
+
+}
